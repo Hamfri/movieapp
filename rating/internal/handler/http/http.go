@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"log"
-	"movieapp/rating/internal/service/rating"
+	rating "movieapp/rating/internal/service/rating"
 	model "movieapp/rating/pkg"
 	"net/http"
 	"strconv"
