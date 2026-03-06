@@ -40,13 +40,12 @@ func (s *Service) Get(ctx context.Context, id string) (*model.MovieDetails, erro
 	details := &model.MovieDetails{Metadata: *metadata}
 
 	rating, err := s.ratingGateway.GetAggregatedRating(ctx, ratingModel.RecordID(id), ratingModel.RecordTypeMovie)
+
 	if err != nil && !errors.Is(err, gateway.ErrNotFound) {
-		// it's okay not to have ratings. Proceed
-	} else if err != nil {
 		return nil, err
-	} else {
-		details.Rating = &rating
 	}
+
+	details.Rating = &rating
 
 	return details, nil
 }

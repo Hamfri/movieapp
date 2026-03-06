@@ -1,0 +1,18 @@
+services:
+  consul:
+    image: hashicorp/consul
+    restart: unless-stopped
+    ports:
+      - '8500:8500'
+      - '8600:8600/udp'
+    command: >
+      agent
+      -server
+      -ui
+      -node=server-1
+      -bootstrap-expect=1
+      -client='0.0.0.0'
+    networks:
+      - movie-net
+networks:
+  movie-net:
